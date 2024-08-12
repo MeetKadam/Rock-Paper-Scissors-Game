@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./styles/rps.css">
+</head>
+<body>
+    <div class="nav">
+        <h1>Rock Paper Scissors - Game</h1>
+
+        <button onclick="playGame('rock');">
+            <img src='images/rock-emoji.png'>
+        </button>
+        <button onclick="playGame('paper');">
+            <img src='images/paper-emoji.png'>
+        </button>
+        <button onclick="playGame('scissors');">
+            <img src='images/scissors-emoji.png'>
+        </button>
+
+        <div class="result js-result"></div>
+    </div>
+
+    <div class="instructions">
+        <h1>How to Play ?</h1>
+        <iframe width="400" height="200" src="https://www.youtube.com/embed/2dsHuU10udY" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="rules">
+        <h1>Rules</h1>
+        <table>
+            <tr>
+                <th>You</th>
+                <th>Computer</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td>rock</td>
+                <td>rock</td>
+                <td>Tie</td>
+            </tr>
+            <tr>
+                <td>paper</td>
+                <td>rock</td>
+                <td>Win</td>
+            </tr>
+            <tr>
+                <td>scissor</td>
+                <td>rock</td>
+                <td>Lose</td>
+            </tr>
+            <tr>
+                <td>paper</td>
+                <td>paper</td>
+                <td>Tie</td>
+            </tr>
+            <tr>
+                <td>scissor</td>
+                <td>paper</td>
+                <td>Win</td>
+            </tr>
+            <tr>
+                <td>rock</td>
+                <td>paper</td>
+                <td>Lose</td>
+            </tr>
+            <tr>
+                <td>scissor</td>
+                <td>scissor</td>
+                <td>Tie</td>
+            </tr>
+            <tr>
+                <td>scissor</td>
+                <td>paper</td>
+                <td>Win</td>
+            </tr>
+            <tr>
+                <td>scissor</td>
+                <td>rock</td>
+                <td>Lose</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        document.title = "RPS Game - Meet Kadam";
+        function pickCompMove(){
+            const compMove = Math.random();
+            if(compMove >= 0 && compMove < 1/3 ){
+                return "rock";
+            }
+            else if(compMove >= 1/3 && compMove < 2/3){
+                return "paper";
+            }
+            else{
+                return "scissors";
+            }
+        }
+
+        const userMove = '';
+        function playGame(userMove) {
+            const computerMove = pickCompMove();
+            let result = '';
+
+            if (userMove === computerMove) {
+                result = 'Tie';
+            } else if ((userMove === 'rock' && computerMove === 'scissors') ||
+                       (userMove === 'paper' && computerMove === 'rock') ||
+                       (userMove === 'scissors' && computerMove === 'paper')) {
+                result = 'You Win';
+            } else {
+                result = 'You Lose';
+            }
+
+            const resultDiv = document.querySelector('.js-result');
+            resultDiv.innerHTML = `
+                <p><strong>YOU - <img src='images/${userMove}-emoji.png'><img src='images/${computerMove}-emoji.png'>- BOT</strong></p>
+                <br>
+                <p><strong>Result : ${result}</strong></p>`;
+            resultDiv.classList.remove('fade');
+            void resultDiv.offsetWidth;
+            resultDiv.classList.add('fade');
+        }
+    </script>
+</body>
+</html>
+/*ADEFD1FF
+00203FFF
+5cd7c2
+*/
